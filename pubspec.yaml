@@ -6,7 +6,6 @@ homepage: https://github.com/lubritto/flutter_share
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface: ^2.1.0
 
 flutter:
   plugin:
@@ -22,7 +21,6 @@ flutter:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic: ^1.11.0
 
 environment:
   sdk: '>=2.12.0 <3.0.0'

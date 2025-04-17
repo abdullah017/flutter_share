@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/foundation.dart';
 import 'flutter_share_platform_interface.dart';
+
+export 'src/method_channel_flutter_share.dart';
+export 'flutter_share_platform_interface.dart';
 
 /// A Flutter plugin for sharing content via the platform share UI.
 class FlutterShare {
