@@ -2,9 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'flutter_share_platform_interface.dart';
-
-export 'src/method_channel_flutter_share.dart';
-export 'flutter_share_platform_interface.dart';
+export 'flutter_share_method.dart';
 
 /// A Flutter plugin for sharing content via the platform share UI.
 class FlutterShare {
