@@ -6,6 +6,9 @@ homepage: https://github.com/lubritto/flutter_share
 dependencies:
   flutter:
     sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  plugin_platform_interface: ^2.1.0
 
 flutter:
   plugin:
@@ -13,9 +16,11 @@ flutter:
       android:
         package: com.example.fluttershare
         pluginClass: FlutterSharePlugin
-        dartPluginClass: FlutterShare
       ios:
         pluginClass: FlutterSharePlugin
+      web:
+        pluginClass: FlutterShareWeb
+        fileName: flutter_share_web.dart
 
 dev_dependencies:
   flutter_test:
