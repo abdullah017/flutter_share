@@ -18,8 +18,6 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
-
 
 /** FlutterSharePlugin */
 public class FlutterSharePlugin implements FlutterPlugin, MethodCallHandler {
@@ -28,15 +26,8 @@ public class FlutterSharePlugin implements FlutterPlugin, MethodCallHandler {
 
     public FlutterSharePlugin() {}
 
-    /** Plugin registration. */
-    @SuppressWarnings("deprecation")
-    public static void registerWith(io.flutter.plugin.common.PluginRegistry.Registrar registrar) {
-        final FlutterSharePlugin instance = new FlutterSharePlugin();
-        instance.onAttachedToEngine(registrar.context(), registrar.messenger());
-    }
-
     @Override
-    public void onAttachedToEngine(FlutterPluginBinding binding) {
+    public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
         onAttachedToEngine(binding.getApplicationContext(), binding.getBinaryMessenger());
     }
 
@@ -47,7 +38,7 @@ public class FlutterSharePlugin implements FlutterPlugin, MethodCallHandler {
     }
 
     @Override
-    public void onDetachedFromEngine(FlutterPluginBinding binding) {
+    public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
         context = null;
         methodChannel.setMethodCallHandler(null);
         methodChannel = null;
