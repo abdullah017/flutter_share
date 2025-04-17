@@ -14,8 +14,10 @@ flutter:
       android:
         package: com.example.fluttershare
         pluginClass: FlutterSharePlugin
+        dartPluginClass: FlutterShareMethod
       ios:
         pluginClass: FlutterSharePlugin
+        dartPluginClass: FlutterShareMethod
 
 dev_dependencies:
   flutter_test:

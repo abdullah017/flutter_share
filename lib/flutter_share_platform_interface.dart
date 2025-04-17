@@ -1,19 +1,16 @@
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:flutter/services.dart';
 
-abstract class FlutterSharePlatform extends PlatformInterface {
-  FlutterSharePlatform() : super(token: _token);
+/// The interface that implementations of flutter_share must implement.
+abstract class FlutterSharePlatform {
+  /// The method channel used to interact with the native platform.
+  static const MethodChannel _channel = MethodChannel('flutter_share');
 
-  static final Object _token = Object();
   static FlutterSharePlatform _instance = MethodChannelFlutterShare();
 
+  /// The default instance of [FlutterSharePlatform] to use.
   static FlutterSharePlatform get instance => _instance;
 
-  static set instance(FlutterSharePlatform instance) {
-    PlatformInterface.verify(instance, _token);
-    _instance = instance;
-  }
-
+  /// Share content
   Future<bool?> share({
     required String title,
     String? text,
@@ -23,6 +20,7 @@ abstract class FlutterSharePlatform extends PlatformInterface {
     throw UnimplementedError('share() has not been implemented.');
   }
 
+  /// Share file
   Future<bool?> shareFile({
     required String title,
     required String filePath,
@@ -34,9 +32,8 @@ abstract class FlutterSharePlatform extends PlatformInterface {
   }
 }
 
+/// An implementation of [FlutterSharePlatform] that uses method channels.
 class MethodChannelFlutterShare extends FlutterSharePlatform {
-  final MethodChannel _channel = const MethodChannel('flutter_share');
-
   @override
   Future<bool?> share({
     required String title,
@@ -44,13 +41,12 @@ class MethodChannelFlutterShare extends FlutterSharePlatform {
     String? linkUrl,
     String? chooserTitle,
   }) async {
-    final success = await _channel.invokeMethod('share', <String, dynamic>{
+    final bool? success = await FlutterSharePlatform._channel.invokeMethod('share', <String, dynamic>{
       'title': title,
       'text': text,
       'linkUrl': linkUrl,
       'chooserTitle': chooserTitle,
     });
-
     return success;
   }
 
@@ -62,14 +58,13 @@ class MethodChannelFlutterShare extends FlutterSharePlatform {
     String? chooserTitle,
     String fileType = '*/*',
   }) async {
-    final success = await _channel.invokeMethod('shareFile', <String, dynamic>{
+    final bool? success = await FlutterSharePlatform._channel.invokeMethod('shareFile', <String, dynamic>{
       'title': title,
       'text': text,
       'filePath': filePath,
       'fileType': fileType,
       'chooserTitle': chooserTitle,
     });
-
     return success;
   }
 } 
